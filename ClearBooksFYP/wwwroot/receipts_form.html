@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipts Form</title>
+    <link rel="stylesheet" href="css/receipts_form_styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>ClearBooks</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="coa.html">Chart of Accounts</a></li>
+                <li><a href="gl_mapping.html">GL Mapping</a></li>
+                <li><a href="voucher_entry.html">Voucher Entry</a></li>
+                <li><a href="payment_form.html">Payment Form</a></li>
+                <li><a href="receipts_form.html" class="active">Receipts Form</a></li>
+                <li><a href="searchview_form.html">Search Form</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="content-header">
+                <h1>Receipts Form</h1>
+                <button id="add-receipt-btn">New Receipt</button>
+            </header>
+
+            <section class="content">
+                <div class="table-container">
+                    <table id="receipts-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Receipt No</th>
+                                <th>Date</th>
+                                <th>Payer Name</th>
+                                <th>Amount</th>
+                                <th>Payment Method</th>
+                                <th>Reference No</th>
+                                <th>Currency</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receipt-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>New Receipt Entry</h2>
+            <form id="receipt-form">
+                <div class="form-header">
+                    <div class="form-group">
+                        <label for="receipt-number">Receipt Number</label>
+                        <input type="text" id="receipt-number" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="receipt-date">Date</label>
+                        <input type="date" id="receipt-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="payer-name">Payer Name</label>
+                        <input type="text" id="payer-name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <select id="currency" required>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="payment-method">Payment Method</label>
+                        <select id="payment-method" required>
+                            <option value="">Select Method</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Check">Check</option>
+                            <option value="Credit Card">Credit Card</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reference-number">Reference Number</label>
+                        <input type="text" id="reference-number">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="voucher-id">Link to Voucher</label>
+                    <input type="text" id="voucher-id" placeholder="Enter Voucher ID">
+                </div>
+
+                <div class="form-footer">
+                    <button type="submit">Save Receipt</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/receipts_form_scripts.js"></script>
+</body>
+</html>

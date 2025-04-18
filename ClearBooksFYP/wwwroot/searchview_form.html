@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search View Form</title>
+    <link rel="stylesheet" href="css/searchview_form_styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>ClearBooks</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="coa.html">Chart of Accounts</a></li>
+                <li><a href="gl_mapping.html">GL Mapping</a></li>
+                <li><a href="voucher_entry.html">Voucher Entry</a></li>
+                <li><a href="payment_form.html">Payment Form</a></li>
+                <li><a href="receipts_form.html">Receipts Form</a></li>
+                <li><a href="searchview_form.html" class="active">Search Form</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="content-header">
+                <h1>Search View Form</h1>
+                <div class="header-actions">
+                    <button id="save-filter-btn">Save Filter</button>
+                    <button id="export-btn">Export</button>
+                </div>
+            </header>
+
+            <section class="content">
+                <!-- Search Filters -->
+                <div class="search-filters">
+                    <form id="search-form">
+                        <div class="filter-row">
+                            <div class="form-group">
+                                <label for="account-name">Account Name</label>
+                                <input type="text" id="account-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="voucher-number">Voucher Number</label>
+                                <input type="text" id="voucher-number">
+                            </div>
+                            <div class="form-group">
+                                <label for="transaction-type">Transaction Type</label>
+                                <select id="transaction-type">
+                                    <option value="">All Types</option>
+                                    <option value="payment">Payment</option>
+                                    <option value="receipt">Receipt</option>
+                                    <option value="journal">Journal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-row">
+                            <div class="form-group">
+                                <label for="date-from">Date From</label>
+                                <input type="date" id="date-from">
+                            </div>
+                            <div class="form-group">
+                                <label for="date-to">Date To</label>
+                                <input type="date" id="date-to">
+                            </div>
+                            <div class="form-group">
+                                <label for="amount-range">Amount Range</label>
+                                <div class="amount-inputs">
+                                    <input type="number" id="amount-min" placeholder="Min">
+                                    <input type="number" id="amount-max" placeholder="Max">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-row">
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select id="status">
+                                    <option value="">All Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="void">Void</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description Contains</label>
+                                <input type="text" id="description">
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" id="search-btn">Search</button>
+                                <button type="button" id="reset-btn">Reset Filters</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Saved Filters -->
+                <div class="saved-filters" id="saved-filters">
+                    <h3>Saved Filters</h3>
+                    <div class="saved-filters-list" id="saved-filters-list">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Results Table -->
+                <div class="table-container">
+                    <table id="results-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th data-sort="transactionId">Transaction ID</th>
+                                <th data-sort="date">Date</th>
+                                <th data-sort="voucherNumber">Voucher Number</th>
+                                <th data-sort="accountName">Account Name</th>
+                                <th data-sort="type">Type</th>
+                                <th data-sort="amount">Amount</th>
+                                <th data-sort="status">Status</th>
+                                <th data-sort="description">Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button id="prev-page" disabled>Previous</button>
+                    <span id="page-info">Page 1 of 1</span>
+                    <button id="next-page" disabled>Next</button>
+                    <select id="page-size">
+                        <option value="10">10 per page</option>
+                        <option value="25">25 per page</option>
+                        <option value="50">50 per page</option>
+                        <option value="100">100 per page</option>
+                    </select>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="export-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Export Results</h2>
+            <div class="export-options">
+                <button data-format="excel">Excel</button>
+                <button data-format="csv">CSV</button>
+                <button data-format="pdf">PDF</button>
+                <button data-format="print">Print</button>
+                <button data-format="email">Email</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Filter Modal -->
+    <div id="save-filter-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Save Current Filter</h2>
+            <form id="save-filter-form">
+                <div class="form-group">
+                    <label for="filter-name">Filter Name</label>
+                    <input type="text" id="filter-name" required>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="./js/searchview_form_scripts.js"></script>
+</body>
+</html>
